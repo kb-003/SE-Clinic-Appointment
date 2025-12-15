@@ -4,9 +4,9 @@ const Patient = require('../models/patientModel');
 const Doctor = require('../models/doctorModel');
 const Appointment = require('../models/appointmentModel');
 
-const MONGO_URI = process.env.MONGO_URI;
+const MONGO_URI = process.env.MONGODB_URI;
 if (!MONGO_URI) {
-  console.error('MONGO_URI required in .env for seeding');
+  console.error('MONGODB_URI required in .env for seeding');
   process.exit(1);
 }
 
