@@ -38,7 +38,7 @@ app.use("/appointments", appointmentRoutes);
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-  console.log(`API URL: https://se-backend-5mmf.onrender.com`);
+  console.log(`API URL: https://se-clinic-appointment.onrender.com`);
   console.log(`Available endpoints:`);
   console.log(`   GET/POST/DELETE  /patients`);
   console.log(`   GET/POST/DELETE  /doctors`);
