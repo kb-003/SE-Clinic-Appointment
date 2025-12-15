@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const seedDatabase = require('./seed/seed');
 
 
 const patientRoutes = require("./routes/patientRoutes");
@@ -13,7 +14,10 @@ dotenv.config();
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log('MongoDB Connected Successfully'))
+  .then(() => {
+    console.log('MongoDB Connected Successfully');
+    seedDatabase(); // <-- call seed function
+  })
   .catch(err => {
     console.error('MongoDB Connection Error:', err.message);
     process.exit(1);
