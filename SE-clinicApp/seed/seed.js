@@ -12,10 +12,13 @@ if (!MONGODB_URI) {
 
 async function seed() {
   try {
-    await mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-    console.log('Connected to DB for seeding');
+    const existingPatients = await Patient.countDocuments();
+    if (existingPatients > 0) {
+      console.log('Seed data already exists. Skipping...');
+      return;
+    }
 
-    await Promise.all([Patient.deleteMany(), Doctor.deleteMany(), Appointment.deleteMany()]);
+    console.log('Seeding database...');
 
     const p1 = await Patient.create({ name: 'Joie Casas', birthDate: '1999-07-23', email: 'jcasas@example.com', phone: '09123456789' });
     const p2 = await Patient.create({ name: 'Justin Garcia', birthDate: '2001-12-01', email: 'jgarcia@example.com', phone: '09246810124' });
