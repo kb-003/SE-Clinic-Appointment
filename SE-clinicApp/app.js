@@ -12,15 +12,12 @@ const appointmentRoutes = require("./routes/appointmentRoutes");
 dotenv.config();
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log('MongoDB Connected Successfully'))
-.catch(err => {
-  console.error('MongoDB Connection Error:', err.message);
-  process.exit(1);
-});
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log('MongoDB Connected Successfully'))
+  .catch(err => {
+    console.error('MongoDB Connection Error:', err.message);
+    process.exit(1);
+  });
 
 const app = express();
 
@@ -35,7 +32,7 @@ app.use("/patients", patientRoutes);
 app.use("/doctors", doctorRoutes);
 app.use("/appointments", appointmentRoutes);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
   console.log(`API URL: https://se-clinic-appointment.onrender.com`);
