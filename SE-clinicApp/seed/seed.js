@@ -4,15 +4,15 @@ const Patient = require('../models/patientModel');
 const Doctor = require('../models/doctorModel');
 const Appointment = require('../models/appointmentModel');
 
-const MONGO_URI = process.env.MONGODB_URI;
-if (!MONGO_URI) {
+const MONGODB_URI = process.env.MONGODB_URI;
+if (!MONGODB_URI) {
   console.error('MONGODB_URI required in .env for seeding');
   process.exit(1);
 }
 
 async function seed() {
   try {
-    await mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+    await mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
     console.log('Connected to DB for seeding');
 
     await Promise.all([Patient.deleteMany(), Doctor.deleteMany(), Appointment.deleteMany()]);
