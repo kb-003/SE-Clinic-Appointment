@@ -27,6 +27,11 @@ app.use(bodyParser.json());
 // Root route
 app.get("/", (req, res) => res.send("Clinic API is running!"));
 
+// Health check
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok", message: "API is running" });
+});
+
 // API prefix
 app.use("/patients", patientRoutes);
 app.use("/doctors", doctorRoutes);
